@@ -8,6 +8,7 @@ import {
   Car,
   Calendar,
   Mail,
+  Star,
   BarChart3,
   LogOut,
   Menu,
@@ -19,6 +20,7 @@ const navLinks = [
   { href: "/admin/cars", label: "Cars", icon: Car },
   { href: "/admin/reservations", label: "Reservations", icon: Calendar },
   { href: "/admin/messages", label: "Messages", icon: Mail },
+  { href: "/admin/reviews", label: "Reviews", icon: Star },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
 ];
 

@@ -422,51 +422,110 @@ function WhySection() {
 function TestimonialsSection() {
   const { ref, visible } = useInView<HTMLElement>();
   const { t } = useLanguage();
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const perPage = typeof window !== "undefined" && window.innerWidth >= 1024 ? 3 : typeof window !== "undefined" && window.innerWidth >= 640 ? 2 : 1;
+  const totalPages = Math.ceil(testimonials.length / perPage);
+
+  useEffect(() => {
+    if (paused || totalPages <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % totalPages);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [paused, totalPages]);
+
+  const visibleTestimonials = testimonials.slice(
+    current * perPage,
+    current * perPage + perPage
+  );
 
   return (
     <section ref={ref} className="bg-white px-6 py-24 sm:px-12 lg:px-20">
       <SectionTitle title={t("testimonials.title")} />
 
       <div
-        className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 transition-all duration-700 ${
+        className={`transition-all duration-700 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
       >
-        {testimonials.map((t) => (
-          <div
-            key={t.id}
-            className="flex flex-col justify-between rounded-lg border border-[#f2f2f0] bg-white p-6 transition-shadow hover:shadow-lg"
-          >
-            {/* Stars */}
-            <div>
-              <div className="mb-4 flex gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`h-4 w-4 ${
-                      i < t.rating ? "text-[#ff5c00]" : "text-gray-200"
-                    }`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-                  </svg>
-                ))}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {visibleTestimonials.map((item) => (
+            <div
+              key={item.id}
+              className="flex flex-col justify-between rounded-lg border border-[#f2f2f0] bg-white p-6 transition-all duration-500 hover:shadow-lg"
+            >
+              <div>
+                <div className="mb-4 flex gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < item.rating ? "text-[#ff5c00]" : "text-gray-200"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
+                    </svg>
+                  ))}
+                </div>
+
+                <blockquote className="mb-6 font-inter text-sm leading-relaxed text-gray-600">
+                  &ldquo;{item.quote}&rdquo;
+                </blockquote>
               </div>
 
-              <blockquote className="mb-6 font-inter text-sm leading-relaxed text-gray-600">
-                &ldquo;{t.quote}&rdquo;
-              </blockquote>
+              <div className="border-t border-[#f2f2f0] pt-4">
+                <p className="font-bebas text-base tracking-wide text-[#0a0a0a]">
+                  {item.name}
+                </p>
+                <p className="font-inter text-xs text-gray-400">{item.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Carousel controls */}
+        {totalPages > 1 && (
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <button
+              onClick={() => setCurrent((c) => (c - 1 + totalPages) % totalPages)}
+              className="rounded-full border border-[#f2f2f0] p-2 text-gray-400 transition-colors hover:border-[#ff5c00] hover:text-[#ff5c00]"
+              aria-label="Previous"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5l-5 5 5 5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === current ? "w-6 bg-[#ff5c00]" : "w-2 bg-gray-200 hover:bg-gray-300"
+                  }`}
+                  aria-label={`Go to page ${i + 1}`}
+                />
+              ))}
             </div>
 
-            <div className="border-t border-[#f2f2f0] pt-4">
-              <p className="font-bebas text-base tracking-wide text-[#0a0a0a]">
-                {t.name}
-              </p>
-              <p className="font-inter text-xs text-gray-400">{t.title}</p>
-            </div>
+            <button
+              onClick={() => setCurrent((c) => (c + 1) % totalPages)}
+              className="rounded-full border border-[#f2f2f0] p-2 text-gray-400 transition-colors hover:border-[#ff5c00] hover:text-[#ff5c00]"
+              aria-label="Next"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M8 5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
-        ))}
+        )}
       </div>
     </section>
   );

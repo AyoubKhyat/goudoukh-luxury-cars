@@ -7,6 +7,7 @@ import { formatMAD, calculatePrice } from "@/lib/utils";
 import { CarViewerProvider } from "@/components/three/ThreeProvider";
 import AnimatedLine from "@/components/ui/AnimatedLine";
 import AvailabilityCalendar from "@/components/ui/AvailabilityCalendar";
+import CarReviews from "@/components/ui/CarReviews";
 
 /* -------------------------------------------------------------------------- */
 /*  Availability helper (deterministic per car)                               */
@@ -222,6 +223,9 @@ export default function CarDetailPage({
             <div className="mt-10">
               <AvailabilityCalendar carSlug={car.id} />
             </div>
+
+            {/* Reviews */}
+            <CarReviews carSlug={car.id} />
           </div>
 
           {/* ---- Right Column: Booking Card (40%) ---- */}
