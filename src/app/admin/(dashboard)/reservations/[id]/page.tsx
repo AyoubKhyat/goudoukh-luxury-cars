@@ -15,6 +15,7 @@ import {
   UserCheck,
   Baby,
   Navigation,
+  FileDown,
 } from "lucide-react";
 import ReservationActions from "@/components/admin/ReservationActions";
 
@@ -163,13 +164,22 @@ export default function ReservationDetailPage() {
               {reservation.id}
             </p>
           </div>
-          <span
-            className={`inline-flex rounded-full px-3 py-1 text-sm font-medium capitalize ${
-              statusColors[reservation.status] || "bg-gray-100 text-gray-600"
-            }`}
-          >
-            {reservation.status}
-          </span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => window.location.href = `/api/admin/reservations/${reservation.id}/invoice`}
+              className="inline-flex items-center gap-2 rounded-lg border border-[#f2f2f0] bg-white px-4 py-2 text-sm font-medium text-[#0a0a0a] hover:bg-[#f2f2f0] transition-colors"
+            >
+              <FileDown className="h-4 w-4" />
+              Invoice PDF
+            </button>
+            <span
+              className={`inline-flex rounded-full px-3 py-1 text-sm font-medium capitalize ${
+                statusColors[reservation.status] || "bg-gray-100 text-gray-600"
+              }`}
+            >
+              {reservation.status}
+            </span>
+          </div>
         </div>
       </div>
 

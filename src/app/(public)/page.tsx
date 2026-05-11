@@ -424,9 +424,22 @@ function TestimonialsSection() {
   const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [perPage, setPerPage] = useState(3);
 
-  const perPage = typeof window !== "undefined" && window.innerWidth >= 1024 ? 3 : typeof window !== "undefined" && window.innerWidth >= 640 ? 2 : 1;
+  useEffect(() => {
+    function updatePerPage() {
+      setPerPage(window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1);
+    }
+    updatePerPage();
+    window.addEventListener("resize", updatePerPage);
+    return () => window.removeEventListener("resize", updatePerPage);
+  }, []);
+
   const totalPages = Math.ceil(testimonials.length / perPage);
+
+  useEffect(() => {
+    setCurrent(0);
+  }, [perPage]);
 
   useEffect(() => {
     if (paused || totalPages <= 1) return;

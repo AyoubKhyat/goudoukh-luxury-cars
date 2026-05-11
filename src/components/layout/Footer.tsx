@@ -102,6 +102,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="hover:text-white hover:pl-1 transition-all duration-300">
+                  {t("nav.blog")}
+                </Link>
+              </li>
+              <li>
                 <Link href="/booking" className="hover:text-white hover:pl-1 transition-all duration-300">
                   {t("nav.bookNow")}
                 </Link>

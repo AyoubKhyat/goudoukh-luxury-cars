@@ -36,6 +36,7 @@ export default function Navbar() {
 
   const navLinks: { href: string; labelKey: TranslationKey }[] = [
     { href: "/cars", labelKey: "nav.cars" },
+    { href: "/blog", labelKey: "nav.blog" },
     { href: "/about", labelKey: "nav.about" },
     { href: "/contact", labelKey: "nav.contact" },
   ];

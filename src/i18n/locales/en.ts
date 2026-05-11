@@ -5,6 +5,7 @@ const en = {
   "nav.about": "About",
   "nav.contact": "Contact",
   "nav.faq": "FAQ",
+  "nav.blog": "Journal",
   "nav.bookNow": "Book Now",
 
   // Hero

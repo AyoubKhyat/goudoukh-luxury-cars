@@ -5,6 +5,7 @@ const ar = {
   "nav.about": "من نحن",
   "nav.contact": "اتصل بنا",
   "nav.faq": "الأسئلة الشائعة",
+  "nav.blog": "المدونة",
   "nav.bookNow": "احجز الآن",
 
   // Hero
