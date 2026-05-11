@@ -2,26 +2,275 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================
+   Goudoukh Luxury Cars — Global Styles
+   Colors: #ffffff, #0a0a0a, #ff5c00, #f2f2f0, #1a1a1a
+   Fonts:  Bebas Neue (headlines) + Inter (body)
+   ============================================ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --- CSS Reset & Base --- */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+    background-color: #ffffff;
+    color: #0a0a0a;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* --- White Noise / Grain Texture --- */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* --- Selection --- */
+  ::selection {
+    background-color: #ff5c00;
+    color: #ffffff;
+  }
+
+  ::-moz-selection {
+    background-color: #ff5c00;
+    color: #ffffff;
+  }
+
+  /* --- Custom Scrollbar --- */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ff5c00;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e05200;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #ff5c00 #1a1a1a;
+  }
+
+  /* --- Typography Base --- */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-bebas), "Bebas Neue", Impact, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================
+   Custom Utility Classes
+   ============================================ */
+@layer utilities {
+  /* --- Orange Gradient Text --- */
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #ff5c00 0%, #ff8a3d 50%, #ff5c00 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* --- Line Draw Animation ---
+     A 1px orange horizontal line that animates from 0 to 100% width */
+  .line-draw {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  .line-draw::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #ff5c00;
+    animation: lineDrawExpand 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+
+  .line-draw--delay-200::after {
+    animation-delay: 0.2s;
+  }
+
+  .line-draw--delay-400::after {
+    animation-delay: 0.4s;
+  }
+
+  .line-draw--delay-600::after {
+    animation-delay: 0.6s;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+/* --- Orange Pulse (availability badge) --- */
+@keyframes orangePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 92, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 92, 0, 0);
+  }
+}
+
+.animate-orange-pulse {
+  animation: orangePulse 2s ease-in-out infinite;
+}
+
+/* --- Line Draw Expand --- */
+@keyframes lineDrawExpand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* --- Page Transition: Curtain Wipe --- */
+@keyframes curtainWipeIn {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes curtainWipeOut {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+}
+
+.page-enter {
+  animation: curtainWipeIn 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.page-exit {
+  animation: curtainWipeOut 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .page-enter,
+  .page-exit {
+    animation: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
+
+  .line-draw::after {
+    animation: none !important;
+    width: 100% !important;
+  }
+
+  .animate-orange-pulse {
+    animation: none !important;
+    box-shadow: none !important;
   }
 }

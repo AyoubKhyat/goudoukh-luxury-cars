@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Car {
+  id            String        @id @default(cuid())
+  name          String
+  slug          String        @unique
+  category      String // SUV, Sedan, Supercar, Convertible
+  description   String
+  pricePerDay   Int
+  zeroToHundred String
+  topSpeed      Int
+  seats         Int
+  engine        String        @default("Twin-Turbo V8")
+  transmission  String        @default("Automatic")
+  colors        String // JSON array stored as string
+  image         String        @default("/images/placeholder.jpg")
+  available     Boolean       @default(true)
+  featured      Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  reservations  Reservation[]
+}
+
+model Reservation {
+  id              String   @id @default(cuid())
+  carId           String
+  car             Car      @relation(fields: [carId], references: [id])
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  pickupDate      DateTime
+  dropoffDate     DateTime
+  pickupLocation  String   @default("Marrakesh Airport")
+  dropoffLocation String   @default("Marrakesh Airport")
+  insurance       Boolean  @default(false)
+  chauffeur       Boolean  @default(false)
+  childSeat       Boolean  @default(false)
+  gps             Boolean  @default(false)
+  totalPrice      Int
+  status          String   @default("pending") // pending, confirmed, completed, cancelled
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
