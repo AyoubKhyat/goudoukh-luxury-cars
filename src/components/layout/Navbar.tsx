@@ -3,11 +3,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import type { TranslationKey } from "@/i18n";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +34,10 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const navLinks = [
-    { href: "/cars", label: "Cars" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+  const navLinks: { href: string; labelKey: TranslationKey }[] = [
+    { href: "/cars", labelKey: "nav.cars" },
+    { href: "/about", labelKey: "nav.about" },
+    { href: "/contact", labelKey: "nav.contact" },
   ];
 
   const isActive = (href: string) => pathname === href;
@@ -74,7 +78,7 @@ export default function Navbar() {
                     : "text-white/80 hover:text-white"
                 }`}
               >
-                {link.label}
+                {t(link.labelKey)}
                 {isActive(link.href) && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#ff5c00] rounded-full" />
                 )}
@@ -88,8 +92,9 @@ export default function Navbar() {
                   : "bg-[#ff5c00] text-white hover:bg-[#e05200] hover:shadow-lg hover:shadow-[#ff5c00]/20"
               }`}
             >
-              Book Now
+              {t("nav.bookNow")}
             </Link>
+            <LanguageSwitcher light={!scrolled} />
           </div>
 
           {/* Mobile hamburger */}
@@ -149,7 +154,7 @@ export default function Navbar() {
                   : "text-white hover:text-[#ff5c00]"
               }`}
             >
-              {link.label}
+              {t(link.labelKey)}
             </Link>
           ))}
           <Link
@@ -157,8 +162,11 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
             className="mt-4 rounded bg-[#ff5c00] px-10 py-3 font-bebas text-xl tracking-wider text-white transition-colors duration-300 hover:bg-[#e05200]"
           >
-            Book Now
+            {t("nav.bookNow")}
           </Link>
+          <div className="mt-4">
+            <LanguageSwitcher light />
+          </div>
         </div>
       </div>
     </>

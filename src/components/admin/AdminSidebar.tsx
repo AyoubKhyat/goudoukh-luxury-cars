@@ -8,6 +8,7 @@ import {
   Car,
   Calendar,
   Mail,
+  BarChart3,
   LogOut,
   Menu,
   X,
@@ -18,6 +19,7 @@ const navLinks = [
   { href: "/admin/cars", label: "Cars", icon: Car },
   { href: "/admin/reservations", label: "Reservations", icon: Calendar },
   { href: "/admin/messages", label: "Messages", icon: Mail },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
 ];
 
 export default function AdminSidebar() {

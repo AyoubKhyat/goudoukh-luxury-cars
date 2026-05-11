@@ -12,6 +12,7 @@ import AnimatedLine from "@/components/ui/AnimatedLine";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { fleetData } from "@/data/fleet";
 import { testimonials } from "@/data/testimonials";
+import { useLanguage } from "@/context/LanguageContext";
 
 /* -------------------------------------------------------------------------- */
 /*  Fade-in-on-scroll hook                                                     */
@@ -116,6 +117,7 @@ const stats = [
 
 function HeroBookingForm() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [carId, setCarId] = useState(fleetData[0].id);
   const [pickupDate, setPickupDate] = useState("");
   const [dropoffDate, setDropoffDate] = useState("");
@@ -135,11 +137,11 @@ function HeroBookingForm() {
       className="w-full lg:w-[340px] flex-shrink-0 rounded-xl bg-white/90 backdrop-blur-md shadow-xl border border-gray-200/60 p-5 space-y-4"
     >
       <p className="font-bebas text-xl tracking-wide text-[#0a0a0a]">
-        QUICK BOOKING
+        {t("hero.quickBooking")}
       </p>
 
       <div>
-        <label className="block text-xs font-medium text-gray-500 mb-1">Vehicle</label>
+        <label className="block text-xs font-medium text-gray-500 mb-1">{t("hero.vehicle")}</label>
         <select
           value={carId}
           onChange={(e) => setCarId(e.target.value)}
@@ -155,7 +157,7 @@ function HeroBookingForm() {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs font-medium text-gray-500 mb-1">Pickup</label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">{t("hero.pickup")}</label>
           <input
             type="date"
             min={todayStr}
@@ -168,7 +170,7 @@ function HeroBookingForm() {
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-500 mb-1">Dropoff</label>
+          <label className="block text-xs font-medium text-gray-500 mb-1">{t("hero.dropoff")}</label>
           <input
             type="date"
             min={pickupDate || todayStr}
@@ -183,11 +185,11 @@ function HeroBookingForm() {
         type="submit"
         className="w-full rounded-lg bg-[#ff5c00] py-3 font-bebas text-lg tracking-wider text-white transition-all duration-300 hover:bg-[#e05200] hover:shadow-lg hover:shadow-[#ff5c00]/20"
       >
-        Check Availability
+        {t("hero.checkAvailability")}
       </button>
 
       <p className="text-center text-[10px] text-gray-400">
-        Pay in cash at pickup &middot; No card required
+        {t("hero.cashNote")}
       </p>
     </form>
   );
@@ -198,6 +200,7 @@ function HeroBookingForm() {
 /* ========================================================================== */
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <>
       <CustomCursor />
@@ -221,17 +224,17 @@ export default function Home() {
             {/* Left: headline */}
             <div className="flex-1">
               <h1 className="font-bebas text-hero tracking-tight text-white max-w-5xl">
-                DRIVE WITHOUT LIMITS
+                {t("hero.headline")}
               </h1>
               <p className="mt-4 max-w-lg font-inter text-lg text-gray-300 sm:text-xl">
-                Premium car rental in Marrakesh
+                {t("hero.subtitle")}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/cars"
                   className="inline-flex items-center justify-center rounded-sm bg-[#ff5c00] px-8 py-3.5 font-bebas text-lg tracking-wider text-white transition-colors hover:bg-[#e05200]"
                 >
-                  Explore Fleet
+                  {t("hero.exploreCTA")}
                 </Link>
               </div>
             </div>
@@ -320,12 +323,13 @@ export default function Home() {
 
 function FleetSection() {
   const { ref, visible } = useInView<HTMLElement>();
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="bg-white px-6 py-24 sm:px-12 lg:px-20">
       <SectionTitle
-        title="OUR FLEET"
-        subtitle="Curated excellence for every journey"
+        title={t("fleet.title")}
+        subtitle={t("fleet.subtitle")}
       />
 
       <div
@@ -343,7 +347,7 @@ function FleetSection() {
           href="/cars"
           className="inline-flex items-center gap-2 font-inter text-base font-medium text-[#ff5c00] transition-colors hover:text-[#e05200]"
         >
-          View All Fleet
+          {t("fleet.viewAll")}
           <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>
@@ -358,10 +362,11 @@ function FleetSection() {
 function WhySection() {
   const { ref: statsRef, visible: statsVisible } = useInView<HTMLDivElement>();
   const { ref: cardsRef, visible: cardsVisible } = useInView<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section data-dark className="bg-[#0a0a0a] px-6 py-24 sm:px-12 lg:px-20">
-      <SectionTitle title="WHY GOUDOUKH" dark />
+      <SectionTitle title={t("why.title")} dark />
 
       {/* Stats row */}
       <div
@@ -416,10 +421,11 @@ function WhySection() {
 
 function TestimonialsSection() {
   const { ref, visible } = useInView<HTMLElement>();
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="bg-white px-6 py-24 sm:px-12 lg:px-20">
-      <SectionTitle title="WHAT OUR CLIENTS SAY" />
+      <SectionTitle title={t("testimonials.title")} />
 
       <div
         className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 transition-all duration-700 ${
@@ -472,6 +478,7 @@ function TestimonialsSection() {
 
 function CTASection() {
   const { ref, visible } = useInView<HTMLElement>();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -485,16 +492,16 @@ function CTASection() {
         }`}
       >
         <h2 className="font-bebas text-hero tracking-tight text-white">
-          READY TO DRIVE?
+          {t("cta.title")}
         </h2>
         <p className="mx-auto mt-4 max-w-md font-inter text-lg text-gray-400">
-          Book your dream car today
+          {t("cta.subtitle")}
         </p>
         <Link
           href="/booking"
           className="mt-10 inline-flex items-center justify-center rounded-sm bg-[#ff5c00] px-10 py-4 font-bebas text-xl tracking-wider text-white transition-colors hover:bg-[#e05200]"
         >
-          Book Now
+          {t("nav.bookNow")}
         </Link>
       </div>
     </section>

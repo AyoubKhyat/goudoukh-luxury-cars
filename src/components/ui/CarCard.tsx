@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import type { Car } from "@/data/fleet";
 import { formatMAD } from "@/lib/utils";
+import { useCompare } from "@/context/CompareContext";
+import { useLanguage } from "@/context/LanguageContext";
 import CarSilhouette from "./CarSilhouette";
 
 interface CarCardProps {
@@ -22,7 +24,10 @@ export default function CarCard({ car }: CarCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const { toggleCompare, isComparing } = useCompare();
+  const { t } = useLanguage();
 
+  const compared = isComparing(car.id);
   const availability = getAvailability(car.id);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -80,6 +85,33 @@ export default function CarCard({ car }: CarCardProps) {
             <div className={`w-full max-w-[280px] transition-transform duration-500 ${isHovered ? "scale-105" : "scale-100"}`}>
               <CarSilhouette category={car.category} color={primaryColor} />
             </div>
+
+            {/* Compare button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCompare(car.id);
+              }}
+              className={`absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold transition-all duration-200 ${
+                compared
+                  ? "bg-[#ff5c00] text-white shadow-md shadow-[#ff5c00]/25"
+                  : "bg-white/80 text-gray-600 hover:bg-white hover:text-[#ff5c00] backdrop-blur-sm"
+              }`}
+              title={compared ? t("compare.removeFromCompare") : t("compare.addToCompare")}
+            >
+              {compared ? (
+                <svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M10 5v10M5 10h10" strokeLinecap="round" />
+                </svg>
+              )}
+              {compared ? t("compare.removeFromCompare") : t("compare.addToCompare")}
+            </button>
 
             {/* Availability badge */}
             <div className="absolute top-3 right-3">

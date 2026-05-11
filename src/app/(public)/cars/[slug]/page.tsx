@@ -6,6 +6,7 @@ import { fleetData } from "@/data/fleet";
 import { formatMAD, calculatePrice } from "@/lib/utils";
 import { CarViewerProvider } from "@/components/three/ThreeProvider";
 import AnimatedLine from "@/components/ui/AnimatedLine";
+import AvailabilityCalendar from "@/components/ui/AvailabilityCalendar";
 
 /* -------------------------------------------------------------------------- */
 /*  Availability helper (deterministic per car)                               */
@@ -215,6 +216,11 @@ export default function CarDetailPage({
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Availability Calendar */}
+            <div className="mt-10">
+              <AvailabilityCalendar carSlug={car.id} />
             </div>
           </div>
 

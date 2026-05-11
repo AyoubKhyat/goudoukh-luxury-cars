@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 function InstagramIcon() {
   return (
@@ -37,6 +38,7 @@ function LinkedInIcon() {
 }
 
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -64,45 +66,49 @@ export default function Footer() {
             </Link>
             <div className="h-[2px] w-10 bg-[#ff5c00] mb-4" />
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-              Premium car rental in Marrakesh. Experience luxury on the open road
-              with our curated fleet of the world&apos;s finest automobiles.
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
             <h4 className="font-bebas text-lg tracking-wider text-[#ff5c00] mb-6">
-              Navigation
+              {t("footer.navigation")}
             </h4>
             <ul className="space-y-3 text-sm text-gray-400">
               <li>
                 <Link href="/" className="hover:text-white hover:pl-1 transition-all duration-300">
-                  Home
+                  {t("nav.home")}
                 </Link>
               </li>
               <li>
                 <Link href="/cars" className="hover:text-white hover:pl-1 transition-all duration-300">
-                  Cars
+                  {t("nav.cars")}
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-white hover:pl-1 transition-all duration-300">
-                  About
+                  {t("nav.about")}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-white hover:pl-1 transition-all duration-300">
-                  Contact
+                  {t("nav.contact")}
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="hover:text-white hover:pl-1 transition-all duration-300">
-                  FAQ
+                  {t("nav.faq")}
                 </Link>
               </li>
               <li>
                 <Link href="/booking" className="hover:text-white hover:pl-1 transition-all duration-300">
-                  Book Now
+                  {t("nav.bookNow")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/compare" className="hover:text-white hover:pl-1 transition-all duration-300">
+                  {t("compare.title")}
                 </Link>
               </li>
             </ul>
@@ -111,24 +117,24 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h4 className="font-bebas text-lg tracking-wider text-[#ff5c00] mb-6">
-              Services
+              {t("footer.services")}
             </h4>
             <ul className="space-y-3 text-sm text-gray-400">
               <li className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[#ff5c00] flex-shrink-0" />
-                24/7 Concierge
+                {t("footer.concierge")}
               </li>
               <li className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[#ff5c00] flex-shrink-0" />
-                Airport Transfer
+                {t("footer.airportTransfer")}
               </li>
               <li className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[#ff5c00] flex-shrink-0" />
-                Full Insurance
+                {t("footer.fullInsurance")}
               </li>
               <li className="flex items-center gap-2">
                 <span className="h-1 w-1 rounded-full bg-[#ff5c00] flex-shrink-0" />
-                Chauffeur
+                {t("footer.chauffeur")}
               </li>
             </ul>
           </div>
@@ -136,7 +142,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-bebas text-lg tracking-wider text-[#ff5c00] mb-6">
-              Contact
+              {t("footer.contact")}
             </h4>
             <ul className="space-y-3 text-sm text-gray-400">
               <li className="flex items-start gap-3">
@@ -184,19 +190,19 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 border-t border-[#1a1a1a] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
-            &copy; {currentYear} GOUDOUKH. All rights reserved.
+            &copy; {currentYear} GOUDOUKH. {t("footer.allRights")}
           </p>
           <div className="flex items-center gap-6 text-xs text-gray-500">
             <Link href="/privacy" className="hover:text-gray-300 transition-colors duration-300">
-              Privacy Policy
+              {t("footer.privacy")}
             </Link>
             <span className="h-3 w-px bg-[#1a1a1a]" />
             <Link href="/terms" className="hover:text-gray-300 transition-colors duration-300">
-              Terms of Service
+              {t("footer.terms")}
             </Link>
             <span className="h-3 w-px bg-[#1a1a1a]" />
             <Link href="/cookies" className="hover:text-gray-300 transition-colors duration-300">
-              Cookies
+              {t("footer.cookies")}
             </Link>
           </div>
         </div>

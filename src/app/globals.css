@@ -241,6 +241,18 @@
 }
 
 /* ============================================
+   RTL Support
+   ============================================ */
+[dir="rtl"] body {
+  font-family: var(--font-inter), "Inter", "Segoe UI", "Tahoma", sans-serif;
+}
+
+[dir="rtl"] .hover\:pl-1:hover {
+  padding-left: 0;
+  padding-right: 0.25rem;
+}
+
+/* ============================================
    Accessibility: Reduced Motion
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
