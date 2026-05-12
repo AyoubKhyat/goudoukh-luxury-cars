@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { blogPosts } from "@/data/blog";
-import { useLanguage } from "@/context/LanguageContext";
 
 const categories = ["All", "Travel", "Cars", "Tips", "Routes"] as const;
 
@@ -17,7 +16,6 @@ const categoryColors: Record<string, string> = {
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  const { t } = useLanguage();
 
   const filtered =
     activeCategory === "All"

@@ -119,8 +119,6 @@ export default function ComparePage() {
       {/* Comparison grid */}
       <div className={`grid gap-6 ${colClass}`}>
         {cars.map((car) => {
-          const primaryColor = car.colors[0]?.hex ?? "#0a0a0a";
-
           return (
             <div
               key={car.id}
