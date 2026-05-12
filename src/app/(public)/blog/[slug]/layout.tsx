@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getBlogPost } from "@/data/blog";
+import { BlogPostJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -26,6 +27,27 @@ export async function generateMetadata({
   };
 }
 
-export default function BlogPostLayout({ children }: { children: React.ReactNode }) {
-  return children;
+export default async function BlogPostLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
+
+  return (
+    <>
+      {post && <BlogPostJsonLd post={post} />}
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://goudoukh-luxury-cars.vercel.app" },
+          { name: "Journal", url: "https://goudoukh-luxury-cars.vercel.app/blog" },
+          { name: post?.title ?? slug, url: `https://goudoukh-luxury-cars.vercel.app/blog/${slug}` },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

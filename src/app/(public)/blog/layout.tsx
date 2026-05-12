@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Journal | Goudoukh Luxury Cars",
@@ -12,5 +13,15 @@ export const metadata: Metadata = {
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://goudoukh-luxury-cars.vercel.app" },
+          { name: "Journal", url: "https://goudoukh-luxury-cars.vercel.app/blog" },
+        ]}
+      />
+      {children}
+    </>
+  );
 }
