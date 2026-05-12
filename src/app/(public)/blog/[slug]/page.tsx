@@ -3,6 +3,7 @@
 import { use } from "react";
 import Link from "next/link";
 import { getBlogPost, blogPosts } from "@/data/blog";
+import ShareButtons from "@/components/ui/ShareButtons";
 
 const categoryColors: Record<string, string> = {
   Travel: "bg-blue-100 text-blue-700",
@@ -140,7 +141,12 @@ export default function BlogPostPage({
         </div>
 
         {/* Orange accent line */}
-        <div className="h-1 w-16 rounded bg-[#ff5c00] mb-10" />
+        <div className="h-1 w-16 rounded bg-[#ff5c00] mb-8" />
+
+        {/* Share */}
+        <div className="mb-10">
+          <ShareButtons title={post.title} />
+        </div>
 
         {/* Content */}
         <div className="font-inter text-base">

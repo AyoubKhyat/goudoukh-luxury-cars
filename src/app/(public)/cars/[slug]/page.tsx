@@ -8,6 +8,7 @@ import { CarViewerProvider } from "@/components/three/ThreeProvider";
 import AnimatedLine from "@/components/ui/AnimatedLine";
 import AvailabilityCalendar from "@/components/ui/AvailabilityCalendar";
 import CarReviews from "@/components/ui/CarReviews";
+import ShareButtons from "@/components/ui/ShareButtons";
 
 /* -------------------------------------------------------------------------- */
 /*  Availability helper (deterministic per car)                               */
@@ -166,6 +167,11 @@ export default function CarDetailPage({
             <p className="mt-6 max-w-xl leading-relaxed text-gray-600">
               {car.description}
             </p>
+
+            {/* Share */}
+            <div className="mt-6">
+              <ShareButtons title={car.name} />
+            </div>
 
             {/* Specs Table */}
             <div className="mt-10">

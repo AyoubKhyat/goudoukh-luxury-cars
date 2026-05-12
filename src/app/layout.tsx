@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
+import ServiceWorkerRegistration from "@/components/pwa/ServiceWorkerRegistration";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +18,12 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ff5c00",
+};
+
 export const metadata: Metadata = {
   title: "Goudoukh Luxury Cars | Premium Car Rental Marrakesh",
   description:
@@ -30,6 +37,11 @@ export const metadata: Metadata = {
     "exotic car hire",
     "Morocco",
   ],
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icons/icon.svg",
+    apple: "/icons/icon.svg",
+  },
   openGraph: {
     title: "Goudoukh Luxury Cars | Premium Car Rental Marrakesh",
     description:
@@ -46,9 +58,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
+      <head>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="font-sans antialiased min-h-screen bg-white text-[#0a0a0a]">
         <LocalBusinessJsonLd />
         {children}
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );
