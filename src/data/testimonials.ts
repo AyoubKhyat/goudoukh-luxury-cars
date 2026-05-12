@@ -4,6 +4,7 @@ export interface Testimonial {
   title: string;
   quote: string;
   rating: 4 | 5;
+  avatar: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -14,6 +15,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "Goudoukh Luxury Cars transformed our corporate retreat in Marrakesh. The Bentley Bentayga was immaculate, and our dedicated driver knew every hidden riad and rooftop restaurant in the medina. An experience that matched the standard our clients expect.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
   },
   {
     id: "testimonial-2",
@@ -22,6 +24,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "I rented the Rolls-Royce Dawn for a weekend shoot in the Agafay Desert. The car arrived spotless, on time, and the team handled every detail so I could focus on my work. The concierge service alone is worth it — they arranged permits I didn't even know I needed.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
   },
   {
     id: "testimonial-3",
@@ -30,6 +33,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "Third time renting with Goudoukh Luxury Cars and the standard never drops. Took the McLaren 720S through the Atlas Mountain passes — the car was perfectly prepared, tyres fresh, and they even suggested routes I would never have found on my own. Flawless.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
   },
   {
     id: "testimonial-4",
@@ -38,6 +42,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "I've used premium rental services across Europe, the Gulf, and Asia. Goudoukh Luxury Cars is comfortably in the top tier. The Ferrari F8 was a dream on the N9 to Ouarzazate, and the handover process was the most seamless I've experienced anywhere.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
   },
   {
     id: "testimonial-5",
@@ -46,6 +51,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "We recommend Goudoukh Luxury Cars to all VIP guests at our properties. The fleet is always current, the vehicles are maintained to concours standards, and their team understands discretion. A reliable partner for our most discerning clientele.",
     rating: 4,
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
   },
   {
     id: "testimonial-6",
@@ -54,5 +60,6 @@ export const testimonials: Testimonial[] = [
     quote:
       "Rented the Range Rover Autobiography for a week exploring the south. From Marrakesh to Essaouira and back through the mountains — the car handled everything beautifully. Goudoukh Luxury Cars's 24/7 support gave us total peace of mind on every stretch of road.",
     rating: 4,
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
   },
 ];

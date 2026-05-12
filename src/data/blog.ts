@@ -8,6 +8,7 @@ export interface BlogPost {
   date: string;
   readTime: number;
   featured: boolean;
+  image: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -51,6 +52,7 @@ Our concierge team can map out a custom itinerary for any route. Just let us kno
     date: "2026-04-28",
     readTime: 6,
     featured: true,
+    image: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80",
   },
   {
     slug: "top-5-supercars-for-moroccan-roads",
@@ -95,6 +97,7 @@ All five are available with or without a chauffeur. Ask our concierge for a reco
     date: "2026-05-02",
     readTime: 5,
     featured: true,
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=800&q=80",
   },
   {
     slug: "luxury-travel-tips-marrakesh",
@@ -147,6 +150,7 @@ That's what we're here for. From restaurant reservations to desert excursions, o
     date: "2026-05-06",
     readTime: 4,
     featured: false,
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?auto=format&fit=crop&w=800&q=80",
   },
   {
     slug: "renting-luxury-car-morocco-what-to-know",
@@ -197,6 +201,7 @@ Our goal is to make the rental invisible — so all you think about is the drive
     date: "2026-05-10",
     readTime: 5,
     featured: false,
+    image: "https://images.unsplash.com/photo-1449965408869-ebd3fee7710d?auto=format&fit=crop&w=800&q=80",
   },
   {
     slug: "marrakesh-to-essaouira-coastal-drive",
@@ -239,6 +244,7 @@ We'd recommend the Mercedes-AMG GT or the Porsche 911 Carrera. Both are comforta
     date: "2026-05-11",
     readTime: 4,
     featured: true,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80",
   },
 ];
 

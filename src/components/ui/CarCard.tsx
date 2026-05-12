@@ -2,11 +2,11 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Car } from "@/data/fleet";
 import { formatMAD } from "@/lib/utils";
 import { useCompare } from "@/context/CompareContext";
 import { useLanguage } from "@/context/LanguageContext";
-import CarSilhouette from "./CarSilhouette";
 
 interface CarCardProps {
   car: Car;
@@ -15,7 +15,6 @@ interface CarCardProps {
 const AVAILABILITY_OPTIONS = ["Available now", "Last unit"] as const;
 
 function getAvailability(id: string): (typeof AVAILABILITY_OPTIONS)[number] {
-  // Deterministic based on car id so it doesn't flicker on re-render
   const hash = id.split("").reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
   return AVAILABILITY_OPTIONS[hash % 2];
 }
@@ -38,7 +37,6 @@ export default function CarCard({ car }: CarCardProps) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Max rotation of 8 degrees
     const rotateY = ((x - centerX) / centerX) * 8;
     const rotateX = ((centerY - y) / centerY) * 8;
 
@@ -51,8 +49,6 @@ export default function CarCard({ car }: CarCardProps) {
     setIsHovered(false);
     setTilt({ rotateX: 0, rotateY: 0 });
   };
-
-  const primaryColor = car.colors[0]?.hex ?? "#0a0a0a";
 
   return (
     <Link href={`/cars/${car.id}`} className="block">
@@ -75,16 +71,18 @@ export default function CarCard({ car }: CarCardProps) {
             transformStyle: "preserve-3d",
           }}
         >
-          {/* Car visual area */}
-          <div
-            className="relative flex h-52 items-end justify-center overflow-hidden px-6 pb-2"
-            style={{
-              background: `linear-gradient(135deg, ${primaryColor}18 0%, ${primaryColor}08 50%, #f8f8f8 100%)`,
-            }}
-          >
-            <div className={`w-full max-w-[280px] transition-transform duration-500 ${isHovered ? "scale-105" : "scale-100"}`}>
-              <CarSilhouette category={car.category} color={primaryColor} />
-            </div>
+          {/* Car image area */}
+          <div className="relative h-52 overflow-hidden bg-[#f8f8f8]">
+            <Image
+              src={car.image}
+              alt={car.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className={`object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "scale-100"}`}
+            />
+
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
             {/* Compare button */}
             <button
@@ -116,7 +114,7 @@ export default function CarCard({ car }: CarCardProps) {
             {/* Availability badge */}
             <div className="absolute top-3 right-3">
               {availability === "Available now" ? (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ff5c00]/10 px-3 py-1 text-xs font-semibold text-[#ff5c00]">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-[#ff5c00]">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ff5c00] opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ff5c00]" />
@@ -124,7 +122,7 @@ export default function CarCard({ car }: CarCardProps) {
                   Available now
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-amber-700">
                   Last unit
                 </span>
               )}

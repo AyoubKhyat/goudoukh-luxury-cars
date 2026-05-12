@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCompare } from "@/context/CompareContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { fleetData, type Car } from "@/data/fleet";
 import { formatMAD } from "@/lib/utils";
-import CarSilhouette from "@/components/ui/CarSilhouette";
 
 /** Parse "3.6s" -> 3.6 for numeric comparison. */
 function parseZeroToHundred(value: string): number {
@@ -141,16 +141,15 @@ export default function ComparePage() {
                 </svg>
               </button>
 
-              {/* Car silhouette */}
-              <div
-                className="flex h-48 items-end justify-center px-6 pb-2"
-                style={{
-                  background: `linear-gradient(135deg, ${primaryColor}18 0%, ${primaryColor}08 50%, #f8f8f8 100%)`,
-                }}
-              >
-                <div className="w-full max-w-[260px]">
-                  <CarSilhouette category={car.category} color={primaryColor} />
-                </div>
+              {/* Car image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={car.image}
+                  alt={car.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
               </div>
 
               {/* Car name */}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { blogPosts } from "@/data/blog";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -60,30 +61,45 @@ export default function BlogPage() {
         {activeCategory === "All" && featuredPost && (
           <Link
             href={`/blog/${featuredPost.slug}`}
-            className="group mb-12 block rounded-2xl border border-[#f2f2f0] bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] p-8 md:p-12 transition-shadow hover:shadow-xl"
+            className="group mb-12 block rounded-2xl overflow-hidden border border-[#f2f2f0] transition-shadow hover:shadow-xl"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${categoryColors[featuredPost.category]}`}>
-                {featuredPost.category}
-              </span>
-              <span className="text-xs text-gray-400">Featured</span>
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              {/* Image */}
+              <div className="relative h-64 md:h-auto">
+                <Image
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              {/* Content */}
+              <div className="bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] p-8 md:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${categoryColors[featuredPost.category]}`}>
+                    {featuredPost.category}
+                  </span>
+                  <span className="text-xs text-gray-400">Featured</span>
+                </div>
+                <h2 className="font-bebas text-3xl tracking-wide text-white md:text-4xl group-hover:text-[#ff5c00] transition-colors">
+                  {featuredPost.title}
+                </h2>
+                <p className="mt-3 max-w-2xl text-gray-400 leading-relaxed">
+                  {featuredPost.excerpt}
+                </p>
+                <div className="mt-6 flex items-center gap-4 text-xs text-gray-500">
+                  <span>{featuredPost.author}</span>
+                  <span>&middot;</span>
+                  <span>{new Date(featuredPost.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span>&middot;</span>
+                  <span>{featuredPost.readTime} min read</span>
+                </div>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#ff5c00] group-hover:gap-3 transition-all">
+                  Read article &rarr;
+                </span>
+              </div>
             </div>
-            <h2 className="font-bebas text-3xl tracking-wide text-white md:text-4xl group-hover:text-[#ff5c00] transition-colors">
-              {featuredPost.title}
-            </h2>
-            <p className="mt-3 max-w-2xl text-gray-400 leading-relaxed">
-              {featuredPost.excerpt}
-            </p>
-            <div className="mt-6 flex items-center gap-4 text-xs text-gray-500">
-              <span>{featuredPost.author}</span>
-              <span>&middot;</span>
-              <span>{new Date(featuredPost.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-              <span>&middot;</span>
-              <span>{featuredPost.readTime} min read</span>
-            </div>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#ff5c00] group-hover:gap-3 transition-all">
-              Read article &rarr;
-            </span>
           </Link>
         )}
 
@@ -93,32 +109,45 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group flex flex-col rounded-xl border border-[#f2f2f0] bg-white p-6 transition-all hover:shadow-lg hover:border-[#ff5c00]/20"
+              className="group flex flex-col rounded-xl border border-[#f2f2f0] bg-white overflow-hidden transition-all hover:shadow-lg hover:border-[#ff5c00]/20"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <span className={`rounded-full px-3 py-1 text-[10px] font-semibold ${categoryColors[post.category]}`}>
-                  {post.category}
-                </span>
-                <span className="text-[11px] text-gray-400">
-                  {post.readTime} min read
-                </span>
+              {/* Image */}
+              <div className="relative h-48">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
 
-              <h3 className="font-bebas text-xl tracking-wide text-[#0a0a0a] group-hover:text-[#ff5c00] transition-colors mb-3">
-                {post.title}
-              </h3>
+              <div className="flex flex-col flex-1 p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={`rounded-full px-3 py-1 text-[10px] font-semibold ${categoryColors[post.category]}`}>
+                    {post.category}
+                  </span>
+                  <span className="text-[11px] text-gray-400">
+                    {post.readTime} min read
+                  </span>
+                </div>
 
-              <p className="flex-1 text-sm leading-relaxed text-gray-500 mb-4">
-                {post.excerpt}
-              </p>
+                <h3 className="font-bebas text-xl tracking-wide text-[#0a0a0a] group-hover:text-[#ff5c00] transition-colors mb-3">
+                  {post.title}
+                </h3>
 
-              <div className="flex items-center justify-between border-t border-[#f2f2f0] pt-4">
-                <span className="text-xs text-gray-400">
-                  {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                </span>
-                <span className="text-xs font-medium text-[#ff5c00] group-hover:translate-x-1 transition-transform">
-                  Read &rarr;
-                </span>
+                <p className="flex-1 text-sm leading-relaxed text-gray-500 mb-4">
+                  {post.excerpt}
+                </p>
+
+                <div className="flex items-center justify-between border-t border-[#f2f2f0] pt-4">
+                  <span className="text-xs text-gray-400">
+                    {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  </span>
+                  <span className="text-xs font-medium text-[#ff5c00] group-hover:translate-x-1 transition-transform">
+                    Read &rarr;
+                  </span>
+                </div>
               </div>
             </Link>
           ))}

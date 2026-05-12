@@ -33,7 +33,7 @@ export const fleetData: Car[] = [
       { name: "Guards Red", hex: "#cc0000" },
       { name: "Racing Yellow", hex: "#f5d300" },
     ],
-    image: "/images/fleet/porsche-911-carrera.jpg",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
     description:
       "The iconic 911 Carrera delivers an unmatched blend of everyday usability and track-ready performance. Its rear-mounted twin-turbo flat-six produces 379 hp, channelled through lightning-fast PDK transmission for a driving experience that defines the sports-car genre.",
   },
@@ -51,7 +51,7 @@ export const fleetData: Car[] = [
       { name: "Verde Mantis", hex: "#66cc33" },
       { name: "Bianco Monocerus", hex: "#f4f4f4" },
     ],
-    image: "/images/fleet/lamborghini-huracan-evo.jpg",
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=800&q=80",
     description:
       "Raw, visceral, and unmistakably Lamborghini. The Huracán EVO pairs a naturally aspirated 5.2-litre V10 producing 640 hp with rear-wheel steering and predictive logic to create a supercar that feels alive. Every drive through Marrakesh becomes an event.",
   },
@@ -69,7 +69,7 @@ export const fleetData: Car[] = [
       { name: "Giallo Modena", hex: "#ffd700" },
       { name: "Blu Corsa", hex: "#003da5" },
     ],
-    image: "/images/fleet/ferrari-f8-tributo.jpg",
+    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80",
     description:
       "A tribute to the most powerful V8 in Ferrari history. The F8 Tributo delivers 710 hp from its 3.9-litre twin-turbo engine while maintaining the surgical precision and emotional soundtrack that only Maranello can produce. Pure automotive artistry.",
   },
@@ -87,7 +87,7 @@ export const fleetData: Car[] = [
       { name: "Silica White", hex: "#e8e8e8" },
       { name: "Aztec Gold", hex: "#c39e5c" },
     ],
-    image: "/images/fleet/mclaren-720s.jpg",
+    image: "https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=800&q=80",
     description:
       "Engineered with Formula 1 DNA, the 720S is a masterpiece of aerodynamic efficiency. Its 4.0-litre twin-turbo V8 generates 710 hp, while the carbon-fibre Monocage II chassis delivers a power-to-weight ratio that embarrasses cars twice its price.",
   },
@@ -105,7 +105,7 @@ export const fleetData: Car[] = [
       { name: "Brilliant Blue Magno", hex: "#1c3f6e" },
       { name: "Designo Selenite Grey", hex: "#7c7d80" },
     ],
-    image: "/images/fleet/mercedes-amg-gt.jpg",
+    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80",
     description:
       "Handcrafted in Affalterbach, the AMG GT embodies the philosophy of one man, one engine. Its front-mid-mounted 4.0-litre biturbo V8 delivers 523 hp with a guttural growl that echoes through the medina walls. Brute force wrapped in breathtaking design.",
   },
@@ -123,7 +123,7 @@ export const fleetData: Car[] = [
       { name: "Marina Bay Blue", hex: "#003f72" },
       { name: "Motegi Red", hex: "#8b0000" },
     ],
-    image: "/images/fleet/bmw-m8-competition.jpg",
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
     description:
       "The M8 Competition Grand Coupé is BMW's ultimate statement — a four-door powerhouse delivering 625 hp from its S63 twin-turbo V8. xDrive all-wheel drive and adaptive M suspension ensure this grand tourer devours Moroccan highways with effortless authority.",
   },
@@ -141,7 +141,7 @@ export const fleetData: Car[] = [
       { name: "Cirrus Silver", hex: "#c4c9cf" },
       { name: "Nautical Blue", hex: "#1a3c61" },
     ],
-    image: "/images/fleet/mercedes-s-class.jpg",
+    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
     description:
       "The benchmark of automotive luxury. The S-Class cocoons its passengers in hand-stitched Nappa leather, 4D surround sound, and ambient lighting that transforms every journey into a first-class experience. MBUX with augmented reality navigation guides you through Marrakesh in unparalleled comfort.",
   },
@@ -159,7 +159,7 @@ export const fleetData: Car[] = [
       { name: "Tango Red", hex: "#c0392b" },
       { name: "Glacier White", hex: "#f0f0f0" },
     ],
-    image: "/images/fleet/audi-rs7-sportback.jpg",
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80",
     description:
       "A wolf in designer clothing. The RS7 Sportback hides a savage 591 hp 4.0-litre twin-turbo V8 beneath its elegantly sculpted fastback silhouette. Quattro all-wheel drive and rear-axle steering deliver supercar agility with the practicality of a five-seat grand tourer.",
   },
@@ -177,7 +177,7 @@ export const fleetData: Car[] = [
       { name: "Carpathian Grey", hex: "#4a4a4a" },
       { name: "Byron Blue", hex: "#1b3a5c" },
     ],
-    image: "/images/fleet/range-rover-autobiography.jpg",
+    image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=800&q=80",
     description:
       "The definitive luxury SUV commands every road — and the spaces between them. Semi-aniline leather, executive rear seats with power recline, and adaptive air suspension that reads the terrain ahead. From the Atlas Mountains to the palm-lined boulevards, nothing rivals its presence.",
   },
@@ -195,7 +195,7 @@ export const fleetData: Car[] = [
       { name: "Dark Sapphire", hex: "#0f1f3d" },
       { name: "St James Red", hex: "#6b1a2a" },
     ],
-    image: "/images/fleet/bentley-bentayga.jpg",
+    image: "https://images.unsplash.com/photo-1580274455191-1c62238ce452?auto=format&fit=crop&w=800&q=80",
     description:
       "Crafted in Crewe with meticulous attention to detail, the Bentayga is the world's most luxurious SUV. Its 4.0-litre V8 produces 542 hp, while the cabin — finished in hand-cross-stitched leather and open-pore veneer — offers a sanctuary from the outside world.",
   },
@@ -213,7 +213,7 @@ export const fleetData: Car[] = [
       { name: "White", hex: "#ffffff" },
       { name: "Carmine Red", hex: "#960018" },
     ],
-    image: "/images/fleet/porsche-cayenne-turbo-gt.jpg",
+    image: "https://images.unsplash.com/photo-1606611013016-969c19ba81f2?auto=format&fit=crop&w=800&q=80",
     description:
       "The fastest Cayenne ever built. With 640 hp from its twin-turbo V8, the Turbo GT demolishes the Nürburgring SUV record and redefines what a performance SUV can achieve. Titanium exhaust, carbon roof, and track-tuned suspension — wrapped in an unmistakable silhouette.",
   },
@@ -231,7 +231,7 @@ export const fleetData: Car[] = [
       { name: "Salamanca Blue", hex: "#1c2951" },
       { name: "Jubilee Silver", hex: "#d0d0d0" },
     ],
-    image: "/images/fleet/rolls-royce-dawn.jpg",
+    image: "https://images.unsplash.com/photo-1631295868223-63265b40d9e4?auto=format&fit=crop&w=800&q=80",
     description:
       "The most social of Rolls-Royces, the Dawn invites you to embrace the Marrakesh sun. Its 6.6-litre twin-turbo V12 whispers 563 hp through a silken ZF transmission, while the six-layer roof retracts in near silence. An open-air palace on wheels — nothing less.",
   },

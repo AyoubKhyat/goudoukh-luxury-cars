@@ -2,6 +2,14 @@
 const nextConfig = {
   transpilePackages: ['three'],
   serverExternalPackages: ['better-sqlite3', '@prisma/adapter-better-sqlite3'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

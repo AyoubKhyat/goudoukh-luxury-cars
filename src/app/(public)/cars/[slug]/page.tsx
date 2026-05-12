@@ -2,6 +2,7 @@
 
 import { useState, useMemo, use } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { fleetData } from "@/data/fleet";
 import { formatMAD, calculatePrice } from "@/lib/utils";
 import { CarViewerProvider } from "@/components/three/ThreeProvider";
@@ -108,6 +109,16 @@ export default function CarDetailPage({
       {/*  TOP: 3D Viewer + Color Picker                                      */}
       {/* ================================================================== */}
       <div className="relative w-full bg-[#f2f2f0]">
+        {/* Background car image */}
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src={car.image}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.08] blur-sm"
+          />
+        </div>
         {/* 3D Viewer */}
         <div className="relative mx-auto h-[50vh] w-full max-w-7xl sm:h-[60vh]">
           <CarViewerProvider color={activeHex} category={car.category} />

@@ -2,6 +2,7 @@
 
 import { use, useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { fleetData } from "@/data/fleet";
 import { formatMAD, calculatePrice } from "@/lib/utils";
 
@@ -237,60 +238,74 @@ export default function BookCarPage({
 
           {/* Summary - 2 cols */}
           <div className="lg:col-span-2">
-            <div className="sticky top-28 rounded-lg bg-[#0a0a0a] p-6 text-white">
-              <h3 className="font-bebas text-2xl tracking-wide text-white mb-4">
-                Summary
-              </h3>
-
-              <div className="mb-4 pb-4 border-b border-white/10">
-                <p className="font-bebas text-xl tracking-wide text-[#ff5c00]">
-                  {car.name}
-                </p>
-                <p className="text-sm text-gray-400">{car.category}</p>
+            <div className="sticky top-28 rounded-lg bg-[#0a0a0a] overflow-hidden text-white">
+              {/* Car image */}
+              <div className="relative h-44">
+                <Image
+                  src={car.image}
+                  alt={car.name}
+                  fill
+                  sizes="400px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
               </div>
 
-              {days > 0 && (
-                <div className="mb-4 pb-4 border-b border-white/10 space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-400">Duration</span>
-                    <span>{days} {days === 1 ? "day" : "days"}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-400">Base rate</span>
-                    <span>{formatMAD(car.pricePerDay * days)}</span>
-                  </div>
-                  {extras.insurance && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Insurance</span>
-                      <span>{formatMAD(500 * days)}</span>
-                    </div>
-                  )}
-                  {extras.driver && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Chauffeur</span>
-                      <span>{formatMAD(1200 * days)}</span>
-                    </div>
-                  )}
-                  {extras.childSeat && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Child Seat</span>
-                      <span>{formatMAD(150 * days)}</span>
-                    </div>
-                  )}
-                  {days >= 7 && (
-                    <div className="flex justify-between text-sm text-green-400">
-                      <span>7+ day discount</span>
-                      <span>-10%</span>
-                    </div>
-                  )}
-                </div>
-              )}
+              <div className="p-6">
+                <h3 className="font-bebas text-2xl tracking-wide text-white mb-4">
+                  Summary
+                </h3>
 
-              <div className="flex justify-between items-end">
-                <span className="text-gray-400 text-sm">Total</span>
-                <span className="font-bebas text-3xl tracking-wide text-[#ff5c00]">
-                  {days > 0 ? formatMAD(totalPrice) : "---"}
-                </span>
+                <div className="mb-4 pb-4 border-b border-white/10">
+                  <p className="font-bebas text-xl tracking-wide text-[#ff5c00]">
+                    {car.name}
+                  </p>
+                  <p className="text-sm text-gray-400">{car.category}</p>
+                </div>
+
+                {days > 0 && (
+                  <div className="mb-4 pb-4 border-b border-white/10 space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-400">Duration</span>
+                      <span>{days} {days === 1 ? "day" : "days"}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-400">Base rate</span>
+                      <span>{formatMAD(car.pricePerDay * days)}</span>
+                    </div>
+                    {extras.insurance && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Insurance</span>
+                        <span>{formatMAD(500 * days)}</span>
+                      </div>
+                    )}
+                    {extras.driver && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Chauffeur</span>
+                        <span>{formatMAD(1200 * days)}</span>
+                      </div>
+                    )}
+                    {extras.childSeat && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Child Seat</span>
+                        <span>{formatMAD(150 * days)}</span>
+                      </div>
+                    )}
+                    {days >= 7 && (
+                      <div className="flex justify-between text-sm text-green-400">
+                        <span>7+ day discount</span>
+                        <span>-10%</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <div className="flex justify-between items-end">
+                  <span className="text-gray-400 text-sm">Total</span>
+                  <span className="font-bebas text-3xl tracking-wide text-[#ff5c00]">
+                    {days > 0 ? formatMAD(totalPrice) : "---"}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

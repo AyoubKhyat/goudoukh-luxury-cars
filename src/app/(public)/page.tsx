@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { useRouter } from "next/navigation";
 import { HeroSceneProvider } from "@/components/three/ThreeProvider";
@@ -210,16 +211,29 @@ export default function Home() {
       {/*  1. HERO                                                            */}
       {/* ------------------------------------------------------------------ */}
       <section className="relative h-screen w-full overflow-hidden bg-[#0a0a0a]">
-        {/* 3D Background */}
+        {/* Background image */}
         <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80"
+            alt="Luxury car on road"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0a0a0a]/60" />
+        </div>
+
+        {/* 3D scene overlay */}
+        <div className="absolute inset-0 z-[1] mix-blend-screen opacity-70">
           <HeroSceneProvider />
         </div>
 
         {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
 
         {/* Content */}
-        <div className="relative z-[2] flex h-full items-end px-6 pb-24 sm:px-12 lg:px-20">
+        <div className="relative z-[3] flex h-full items-end px-6 pb-24 sm:px-12 lg:px-20">
           <div className="flex w-full flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             {/* Left: headline */}
             <div className="flex-1">
@@ -247,12 +261,12 @@ export default function Home() {
         </div>
 
         {/* Mobile booking form — stacked below headline content */}
-        <div className="relative z-[2] px-6 pb-8 sm:px-12 lg:hidden">
+        <div className="relative z-[3] px-6 pb-8 sm:px-12 lg:hidden">
           <HeroBookingForm />
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 z-[2] -translate-x-1/2 hidden lg:block">
+        <div className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 hidden lg:block">
           <div className="flex flex-col items-center gap-2 animate-bounce">
             <span className="font-inter text-xs uppercase tracking-[0.2em] text-gray-500">
               Scroll
@@ -365,51 +379,64 @@ function WhySection() {
   const { t } = useLanguage();
 
   return (
-    <section data-dark className="bg-[#0a0a0a] px-6 py-24 sm:px-12 lg:px-20">
-      <SectionTitle title={t("why.title")} dark />
-
-      {/* Stats row */}
-      <div
-        ref={statsRef}
-        className={`mb-20 grid grid-cols-2 gap-8 sm:grid-cols-4 transition-all duration-700 ${
-          statsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        {stats.map((stat) => (
-          <div key={stat.label} className="text-center">
-            <div className="text-5xl sm:text-6xl">
-              <CountUp end={stat.end} suffix={stat.suffix} />
-            </div>
-            <p className="mt-2 font-inter text-sm uppercase tracking-[0.15em] text-gray-500">
-              {stat.label}
-            </p>
-          </div>
-        ))}
+    <section data-dark className="relative bg-[#0a0a0a] px-6 py-24 sm:px-12 lg:px-20 overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.07]"
+        />
       </div>
 
-      <AnimatedLine className="mb-16" />
+      <div className="relative z-10">
+        <SectionTitle title={t("why.title")} dark />
 
-      {/* Feature cards */}
-      <div
-        ref={cardsRef}
-        className={`grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 transition-all duration-700 delay-200 ${
-          cardsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        {features.map((feature) => (
-          <div
-            key={feature.title}
-            className="group rounded-lg border border-white/10 bg-[#1a1a1a] p-6 transition-colors hover:border-[#ff5c00]/40"
-          >
-            <div className="mb-4 text-[#ff5c00]">{feature.icon}</div>
-            <h3 className="mb-2 font-bebas text-xl tracking-wide text-white">
-              {feature.title}
-            </h3>
-            <p className="font-inter text-sm leading-relaxed text-gray-400">
-              {feature.description}
-            </p>
-          </div>
-        ))}
+        {/* Stats row */}
+        <div
+          ref={statsRef}
+          className={`mb-20 grid grid-cols-2 gap-8 sm:grid-cols-4 transition-all duration-700 ${
+            statsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-5xl sm:text-6xl">
+                <CountUp end={stat.end} suffix={stat.suffix} />
+              </div>
+              <p className="mt-2 font-inter text-sm uppercase tracking-[0.15em] text-gray-500">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <AnimatedLine className="mb-16" />
+
+        {/* Feature cards */}
+        <div
+          ref={cardsRef}
+          className={`grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 transition-all duration-700 delay-200 ${
+            cardsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="group rounded-lg border border-white/10 bg-[#1a1a1a]/80 backdrop-blur-sm p-6 transition-colors hover:border-[#ff5c00]/40"
+            >
+              <div className="mb-4 text-[#ff5c00]">{feature.icon}</div>
+              <h3 className="mb-2 font-bebas text-xl tracking-wide text-white">
+                {feature.title}
+              </h3>
+              <p className="font-inter text-sm leading-relaxed text-gray-400">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -492,11 +519,22 @@ function TestimonialsSection() {
                 </blockquote>
               </div>
 
-              <div className="border-t border-[#f2f2f0] pt-4">
-                <p className="font-bebas text-base tracking-wide text-[#0a0a0a]">
-                  {item.name}
-                </p>
-                <p className="font-inter text-xs text-gray-400">{item.title}</p>
+              <div className="flex items-center gap-3 border-t border-[#f2f2f0] pt-4">
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src={item.avatar}
+                    alt={item.name}
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-bebas text-base tracking-wide text-[#0a0a0a]">
+                    {item.name}
+                  </p>
+                  <p className="font-inter text-xs text-gray-400">{item.title}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -556,10 +594,22 @@ function CTASection() {
     <section
       ref={ref}
       data-dark
-      className="bg-[#0a0a0a] px-6 py-32 text-center sm:px-12 lg:px-20"
+      className="relative bg-[#0a0a0a] px-6 py-32 text-center sm:px-12 lg:px-20 overflow-hidden"
     >
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]/60" />
+      </div>
+
       <div
-        className={`transition-all duration-700 ${
+        className={`relative z-10 transition-all duration-700 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >

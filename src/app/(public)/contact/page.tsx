@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import ContactForm from "@/components/contact/ContactForm";
 
 /* ──────────────────────────────────────────────
@@ -55,7 +56,19 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section className="relative bg-[#0a0a0a] pt-32 pb-20 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1920&q=80"
+            alt="Luxury interior"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <h1 className="font-bebas text-hero tracking-tight text-white leading-none">
             CONTACT US
           </h1>
@@ -64,14 +77,6 @@ export default function ContactPage() {
             partnership proposal? We would love to hear from you.
           </p>
           <div className="mt-6 h-[2px] w-20 bg-[#ff5c00]" />
-        </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-20 right-10 hidden lg:block opacity-[0.03]">
-          <div className="h-48 w-48 rounded-full border-[3px] border-[#ff5c00]" />
-        </div>
-        <div className="absolute bottom-10 right-40 hidden lg:block opacity-[0.05]">
-          <div className="h-24 w-24 border-[2px] border-[#ff5c00] rotate-45" />
         </div>
       </section>
 
@@ -118,28 +123,40 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              {/* Map / Directions CTA */}
-              <div className="mt-8 rounded-lg bg-[#0a0a0a] p-6">
-                <h3 className="font-bebas text-xl tracking-wide text-white mb-2">
-                  Visit Our Showroom
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed mb-4">
-                  Come see our fleet in person at our Gueliz showroom.
-                  Complimentary refreshments and a personal tour of every vehicle await you.
-                </p>
-                <a
-                  href="https://maps.google.com/?q=Gueliz+Marrakesh+Morocco"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded bg-[#ff5c00] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#e05200]"
-                >
-                  Get Directions
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
+              {/* Showroom CTA with image */}
+              <div className="mt-8 relative rounded-lg overflow-hidden">
+                <div className="absolute inset-0">
+                  <Image
+                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80"
+                    alt="Luxury car showroom"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[#0a0a0a]/80" />
+                </div>
+                <div className="relative z-10 p-6">
+                  <h3 className="font-bebas text-xl tracking-wide text-white mb-2">
+                    Visit Our Showroom
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                    Come see our fleet in person at our Gueliz showroom.
+                    Complimentary refreshments and a personal tour of every vehicle await you.
+                  </p>
+                  <a
+                    href="https://maps.google.com/?q=Gueliz+Marrakesh+Morocco"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded bg-[#ff5c00] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#e05200]"
+                  >
+                    Get Directions
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

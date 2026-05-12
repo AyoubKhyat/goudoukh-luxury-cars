@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { fleetData, type CarCategory } from "@/data/fleet";
 import CarCard from "@/components/ui/CarCard";
-import SectionTitle from "@/components/ui/SectionTitle";
 
 const CATEGORIES: ("All" | CarCategory)[] = [
   "All",
@@ -23,14 +23,31 @@ export default function CarsPage() {
   }, [activeFilter]);
 
   return (
-    <section className="min-h-screen bg-white pt-28 pb-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Page Header */}
-        <SectionTitle
-          title="OUR FLEET"
-          subtitle="12 handpicked vehicles for the discerning driver"
+    <section className="min-h-screen bg-white">
+      {/* Hero banner */}
+      <div className="relative h-64 sm:h-72 overflow-hidden bg-[#0a0a0a]">
+        <Image
+          src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1920&q=80"
+          alt="Fleet of luxury cars"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-40"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+        <div className="relative z-10 flex h-full items-center px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl w-full">
+            <h1 className="font-bebas text-5xl md:text-6xl tracking-wide text-white">
+              OUR FLEET
+            </h1>
+            <p className="mt-2 max-w-lg text-gray-300">
+              12 handpicked vehicles for the discerning driver
+            </p>
+          </div>
+        </div>
+      </div>
 
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-10 pb-20">
         {/* Filter Bar */}
         <div className="mb-8 flex flex-wrap items-center gap-3">
           {CATEGORIES.map((category) => (

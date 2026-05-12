@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 /* ──────────────────────────────────────────────
    FAQ Data
@@ -151,7 +152,19 @@ export default function FAQPage() {
     <>
       {/* Hero */}
       <section className="relative bg-[#0a0a0a] pt-32 pb-20 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-15"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <h1 className="font-bebas text-hero tracking-tight text-white leading-none">
             FREQUENTLY ASKED
             <br />
@@ -162,13 +175,6 @@ export default function FAQPage() {
             Can&apos;t find what you are looking for? Contact our team.
           </p>
           <div className="mt-6 h-[2px] w-20 bg-[#ff5c00]" />
-        </div>
-
-        {/* Decorative */}
-        <div className="absolute bottom-0 right-0 hidden lg:block opacity-[0.02]">
-          <p className="font-bebas text-[12rem] text-white leading-none -mb-8">
-            FAQ
-          </p>
         </div>
       </section>
 

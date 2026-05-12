@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import SectionTitle from "@/components/ui/SectionTitle";
 import AnimatedLine from "@/components/ui/AnimatedLine";
 
@@ -11,25 +12,25 @@ const team = [
     name: "Youssef Alami",
     title: "Founder & CEO",
     bio: "A lifelong petrolhead with a vision to bring world-class automotive experiences to Morocco. Youssef founded Goudoukh Luxury Cars after a decade in luxury hospitality across Europe and the Middle East.",
-    gradient: "from-[#ff5c00] to-[#ff8a3d]",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Sarah Chen",
     title: "Head of Operations",
     bio: "With a background in logistics and premium brand management, Sarah ensures every touchpoint of the Goudoukh experience runs with precision and elegance.",
-    gradient: "from-[#0a0a0a] to-[#333]",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Karim Bennani",
     title: "Fleet Manager",
     bio: "Karim brings 15 years of automotive expertise to curate and maintain our fleet to the highest standards. Every car meets his exacting specifications before it reaches a client.",
-    gradient: "from-[#1a1a1a] to-[#ff5c00]",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Elena Rossi",
     title: "Client Relations Director",
     bio: "Elena crafts bespoke itineraries and concierge experiences. Her network across Marrakesh guarantees access to the finest restaurants, riads, and hidden gems.",
-    gradient: "from-[#ff5c00] to-[#0a0a0a]",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
   },
 ];
 
@@ -99,24 +100,31 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-white pt-32 pb-20 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h1 className="font-bebas text-hero tracking-tight text-[#0a0a0a] leading-none">
+      <section className="relative bg-[#0a0a0a] pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1920&q=80"
+            alt="Luxury sports car"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <h1 className="font-bebas text-hero tracking-tight text-white leading-none">
             THE GOUDOUKH
             <br />
             <span className="text-gradient-orange">STORY</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-gray-500 leading-relaxed">
+          <p className="mt-6 max-w-xl text-lg text-gray-300 leading-relaxed">
             Born from a passion for extraordinary machines and Moroccan
             hospitality, Goudoukh Luxury Cars delivers the finest luxury car rental experience
             in Marrakesh. Every detail is curated. Every journey, unforgettable.
           </p>
           <AnimatedLine className="mt-8 max-w-md" />
-        </div>
-
-        {/* Decorative corner element */}
-        <div className="absolute top-20 right-0 hidden lg:block w-64 h-64 opacity-[0.03]">
-          <div className="w-full h-full border-[3px] border-[#ff5c00] rotate-45 translate-x-1/2" />
         </div>
       </section>
 
@@ -155,33 +163,29 @@ export default function AboutPage() {
               <AnimatedLine className="mt-8 max-w-xs" delay={300} />
             </div>
 
-            {/* Right: Decorative Abstract Element */}
-            <div className="relative flex items-center justify-center">
-              <div className="relative w-full max-w-md aspect-square">
-                {/* Gradient background */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#ff5c00]/20 via-[#1a1a1a] to-[#ff5c00]/10" />
-                {/* Inner frame */}
-                <div className="absolute inset-4 rounded-xl border border-[#ff5c00]/20" />
-                {/* Cross lines */}
-                <div className="absolute top-1/2 left-0 right-0 h-px bg-[#ff5c00]/10" />
-                <div className="absolute top-0 bottom-0 left-1/2 w-px bg-[#ff5c00]/10" />
-                {/* Center badge */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="font-bebas text-7xl md:text-8xl tracking-wider text-[#ff5c00]/80">
-                      G
-                    </p>
-                    <p className="font-bebas text-sm tracking-[0.4em] text-white/40 mt-1">
-                      EST. 2019
-                    </p>
-                  </div>
+            {/* Right: Showroom Image */}
+            <div className="relative">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1619405399517-d7fce0f13302?auto=format&fit=crop&w=800&q=80"
+                  alt="Luxury car showroom"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <p className="font-bebas text-7xl md:text-8xl tracking-wider text-[#ff5c00]/80">
+                    G
+                  </p>
+                  <p className="font-bebas text-sm tracking-[0.4em] text-white/60 mt-1">
+                    EST. 2019
+                  </p>
                 </div>
-                {/* Corner accents */}
-                <div className="absolute top-4 left-4 h-8 w-8 border-t-2 border-l-2 border-[#ff5c00]/40 rounded-tl-lg" />
-                <div className="absolute top-4 right-4 h-8 w-8 border-t-2 border-r-2 border-[#ff5c00]/40 rounded-tr-lg" />
-                <div className="absolute bottom-4 left-4 h-8 w-8 border-b-2 border-l-2 border-[#ff5c00]/40 rounded-bl-lg" />
-                <div className="absolute bottom-4 right-4 h-8 w-8 border-b-2 border-r-2 border-[#ff5c00]/40 rounded-br-lg" />
               </div>
+              {/* Corner accents */}
+              <div className="absolute -top-3 -left-3 h-12 w-12 border-t-2 border-l-2 border-[#ff5c00]/40 rounded-tl-lg" />
+              <div className="absolute -bottom-3 -right-3 h-12 w-12 border-b-2 border-r-2 border-[#ff5c00]/40 rounded-br-lg" />
             </div>
           </div>
         </div>
@@ -201,16 +205,15 @@ export default function AboutPage() {
                 key={member.name}
                 className="group relative rounded-lg border border-gray-200 p-6 transition-all duration-300 hover:border-[#ff5c00]/30 hover:shadow-lg hover:shadow-[#ff5c00]/5"
               >
-                {/* Avatar circle */}
-                <div
-                  className={`mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} transition-transform duration-300 group-hover:scale-105`}
-                >
-                  <span className="font-bebas text-2xl text-white tracking-wider">
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
+                {/* Avatar */}
+                <div className="mx-auto mb-5 relative h-20 w-20 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
                 </div>
 
                 {/* Info */}
@@ -233,7 +236,7 @@ export default function AboutPage() {
       </section>
 
       {/* Concierge Services Section */}
-      <section className="bg-white py-24 border-t border-gray-100">
+      <section className="relative bg-white py-24 border-t border-gray-100 overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionTitle
             title="CONCIERGE SERVICES"
